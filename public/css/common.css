@@ -1,0 +1,81 @@
+/* @import "animate.css";
+@import "icomoon.css";
+@import "themify-icons.css";
+@import "magnific-popup.css";
+@import "owl.carousel.min.css";
+@import "owl.theme.default.min.css";
+
+@import "bootstrap.css";
+@import "flexslider.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "bootstrap.css";
+@import "style.css"; */
+
+.appGrp{
+    display: block;
+    margin: auto;
+    padding: 10px;
+}
+.appGrp img{text-align: center;width: 100%;}
+.appGrp ul{
+    background: #fff;
+    webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+    margin: auto;
+    
+}
+.appGrp ul:hover{
+    webkit-box-shadow: 0px 1px 3px 0px rgba(71, 212, 255, 0.9);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(71, 212, 255, 0.9);
+    box-shadow: 0px 1px 3px 0px rgba(71, 212, 255, 0.9);
+}
+.appGrp ul, .appGrp ul li{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    list-style: none;
+    text-align: center;
+    padding: 5px;
+}
+h2{margin: 10px 0;}
+h4{margin: 5px 0;}
+p{margin: 0}
+.containt{display: block;width: 80%;margin: auto;margin-top: 50px;margin-bottom: 100px;}
+.formGrp{
+    display: block;padding: 20px;
+}
+.devRegGrp{
+    display: none; width: 400px; border: 1px solid #000;
+    top:30px;right: -60px;margin-left: auto;border-radius: 12px;
+    z-index: 1100;padding: 10px;text-align: left;position: absolute;
+    padding-top: 0px;background: #fff;
+
+}
+.devRegGrp ul li{padding:0;margin: 0;}
+.ubea-nav .devRegGrp ul li a{text-align: left;padding:0;margin: 0;}
+.devRegGrp .userGrp{text-align: left;}
+.devRegGrp .material-icons{position: absolute;top: 10px;right: 20px;font-size:24px;text-align: right;}
+.userImg{text-align: center;}
+.userImg img{width: 100px;}
+.devRegOpen:hover{
+    
+}
+.type-nav a{padding: 5px 10px;}
+.type-nav a:hover{ cursor: pointer;}
+.pageTit{text-align: left;padding: 5px;}
+.footer-nav ul{list-style: none;padding: 0;margin: 0;
+    display: block;width: 100%;position: fixed;bottom: 0;    
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);background: #eee;
+}
+.footer-nav ul li{list-style: none;padding: 0;margin: 0;
+    display: inline-block;padding: 10px 20px;width: 20%;}
+.footer-nav ul li:hover{background: #ddd;}
+.appDetail{text-align: left;}
+.tag label{margin:0px 5px 0 0;background: #89e7ff;padding: 2px 5px;border-radius: 5px;
+    font-size: 12px;font-weight:normal;}
+
+
+

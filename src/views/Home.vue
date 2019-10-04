@@ -13,15 +13,16 @@ export default {
   name: "home",
   components: {
     HelloWorld
-  },
-  created() {
-    EventService.getEvents()
-      .then(response => {
-        this.events = response.data
-      })
-      .catch(error => {
-        console.log('There was an error:', error.response)
-      })
   }
+  // ,
+  // created() {
+  //   EventService.getEvent(this.id)
+  //     .then(response => {
+  //       this.event = response.data
+  //     })
+  //     .catch(error => {
+  //       console.log('There was an error:', error.response)
+  //     })
+  // }
 };
 </script>
