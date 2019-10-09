@@ -2,8 +2,8 @@ import axios from 'axios'
 import Mock from 'mockjs'
     
 const apiClient = axios.create({
-    baseURL: `http://localhost:3000`,
-    withCredentials: false, // This is the default
+    baseURL: `http://127.0.0.1:8000/api`,
+    withCredentials: false, // This is the default http://localhost:3000
     headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -20,15 +20,10 @@ export  default {
     getMember() {
     return apiClient.get('/member')
     },
-    postMember(memberData){
-        console.log("memberData--",memberData);
-        axios.post('http://localhost:3000/postMember', memberData)
-        .then((response) => {
-            console.log("response--",response);
-        })
-        .catch((e) => {
-            console.error(e)
-        })
+    getMember(id) {
+    return apiClient.get('/member' + id)
+    },
+    postLogin(loginData){
+    return apiClient.post('/login', loginData)        
     }
-
 }
