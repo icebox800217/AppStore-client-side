@@ -345,7 +345,6 @@
 	};
 
 	var sliderMain = function() {
-		
 	  	$('#ubea-hero .flexslider').flexslider({
 			animation: "fade",
 			slideshowSpeed: 5000,

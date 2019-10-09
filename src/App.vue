@@ -16,7 +16,9 @@
                 <div class="col-xs-10 text-right main-nav">
                     <ul>
                         <li class="active">
-                          <!-- <router-link to="/app-stores">Home</router-link> -->
+                          <router-link to="/app-stores">App Stores</router-link>
+                        </li>
+                        <li>
                           <router-link :to="{ name: 'event-list' }">商品列表</router-link>
                           <!--  |<router-link :to="{ name: 'event-create' }">Create</router-link> 
                           <router-link to="/app-stores">商品列表</router-link>-->
@@ -31,10 +33,12 @@
                                       <img src="images/userImg.jpg">
                                   </div>
                                   <div class="col-md-6 userGrp">
-                                      <ul>
+                                      <ul class="memberUl">
                                           <li>{{ member.email }}</li>
                                           <li>
-                                            <a href="developRegist.html" class="external">開發人員申請</a> | 
+                                            <router-link :to="{ name: 'add-member' }" class="external">開發人員申請</router-link>
+                                            <!-- <a href="developRegist.html" class="external">開發人員申請</a> -->
+                                             | 
                                             <a href="index.html" class="external">登出</a></li>
                                       </ul>
                                   </div>

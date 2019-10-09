@@ -35,7 +35,7 @@
           <h3>{{ event.appName }}</h3>
           <label>{{ event.company }}</label>
           <div class="tag">
-            <label v-for="tag,index in event.tags" v-bind:event="event">{{tag}}</label>
+            <label v-for="(tag,index) in event.tags" :key="index">{{tag}}</label>
             <!-- <EventCard v-for="event in events" :key="event.id" :event="event" /> -->
           </div>
           <div class="row">
@@ -55,14 +55,18 @@
           <div id="ubea-hero" data-section="home">
             <div class="flexslider">
               <ul class="slides">
+                <!-- <li v-for="(slideIme,index) in event.slideImgs" :key="index">
+                  {{slideIme}}
+                  <img :src="`${publicPath}${slideIme}`" />
+                </li> -->
                 <li>
-                  <img src="images/img_bg_1.jpg" />
+                  <img :src="`${publicPath}${event.slideImg1}`" />
                 </li>
                 <li>
-                  <img src="images/img_bg_2.jpg" />
+                  <img :src="`${publicPath}${event.slideImg2}`" />
                 </li>
                 <li>
-                  <img src="images/img_bg_3.jpg" />
+                  <img :src="`${publicPath}${event.slideImg3}`" />
                 </li>
               </ul>
             </div>
@@ -77,6 +81,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import EventService from "@/services/EventService.js";
 

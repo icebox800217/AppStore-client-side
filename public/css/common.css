@@ -76,6 +76,7 @@ p{margin: 0}
 .appDetail{text-align: left;}
 .tag label{margin:0px 5px 0 0;background: #89e7ff;padding: 2px 5px;border-radius: 5px;
     font-size: 12px;font-weight:normal;}
+.memberUl li{display: block;}
 
 
 

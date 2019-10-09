@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Mock from 'mockjs'
     
 const apiClient = axios.create({
     baseURL: `http://localhost:3000`,
@@ -18,5 +19,16 @@ export  default {
     },
     getMember() {
     return apiClient.get('/member')
+    },
+    postMember(memberData){
+        console.log("memberData--",memberData);
+        axios.post('http://localhost:3000/postMember', memberData)
+        .then((response) => {
+            console.log("response--",response);
+        })
+        .catch((e) => {
+            console.error(e)
+        })
     }
+
 }
