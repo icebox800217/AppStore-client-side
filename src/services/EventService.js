@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Mock from 'mockjs'
+// import Mock from 'mockjs';
     
 const apiClient = axios.create({
     baseURL: `http://127.0.0.1:8000/api`,
@@ -8,22 +8,55 @@ const apiClient = axios.create({
     Accept: 'application/json',
     'Content-Type': 'application/json'
     }
-})
-console.log("app--",apiClient);
+});
+   
+const apiClientDb = axios.create({
+    baseURL: `http://localhost:3000`,
+    withCredentials: false, // This is the default http://localhost:3000
+    headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+    }
+});
+
 export  default {
+    getLoginUser() {
+    return apiClientDb.get('/loginUser')
+    },    
     getEvents() {
-    return apiClient.get('/events')
+    return apiClientDb.get('/apps');
     },
     getEvent(id) {
-    return apiClient.get('/events/' + id)
+    return apiClientDb.get('/apps/' + id);
+    },    
+    getApps() {
+    return apiClient.get('/appLast');
+    },    
+    getApp(id) {
+    return apiClient.get('/member/App/' + id);
     },
     getMember() {
-    return apiClient.get('/member')
+    return apiClient.get('/member');
     },
-    getMember(id) {
-    return apiClient.get('/member' + id)
+    getMemberByID(id) {
+    return apiClient.get('/member/' + id)
     },
     postLogin(loginData){
-    return apiClient.post('/login', loginData)        
+    return apiClient.post('/member/login/', loginData);       
+    },
+    postMember(registerData){
+    return apiClient.post('/member/', registerData);       
+    },
+    getAllCategory() {
+    return apiClient.get('/getAllCategory');
+    },
+    getComment(appID) {
+    return apiClient.get('/member/comment/' + appID);
+    },
+    getSearch(searchData) {
+    return apiClient.post('/member/search',searchData);
+    },
+    getAppImg(appID) {
+    return apiClient.get('/member/Appimg/' + appID);
     }
-}
+};

@@ -33,7 +33,8 @@
 </template>
 <script>
 import EventService from "@/services/EventService.js";
-import axios from 'axios'
+import axios from 'axios';
+import VueSession from "vue-session";
 
 export default {
   data(){
@@ -51,24 +52,29 @@ export default {
   },
   methods:{
     formSubmit: async function() {
-      const { email, password } = this;
+      const { email, password } = this._data;
       console.log("this--",this);
+      console.log("window--",window);
       EventService.postLogin({ email, password })
       .then(function (response) {  
         let status = response.statusText;
         if(status == "OK"){
             EventService.getMember()
             .then(response => {
-              console.log("data---", response);
+              console.log("data---", response.request.response);
+              let userData = response.request.response;
+              window.sessionStorage.setItem('userData',userData);
+              console.log("userData--",userData);
+              location.href = '/';
             })
             .catch(error => {
               console.log("There was an error:", error.response);
             });
         }
-      console.log("response---",response);
+      //console.log("response---",response);
       })
       .catch(function (error) {
-      console.log(error);
+      console.log("error--",error);
       });    
     }
   }

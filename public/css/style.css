@@ -17,9 +17,12 @@ body {
   color: #777;
   background: #fff;
 }
-body,h1,h2,h3,h4,h5,p,a,label,span,div{
+body,h1,h2,h3,h4,h5,p,a,label,span,div,ul,input,font{
   font-family:'Microsoft JhengHei', '微軟正黑體', 'Microsoft YaHei', "Droid Sans", Arial, sans-serif;
+
 }
+h1,h2,h3{margin: 15px 0;}
+h4,h5{margin: 10px 0;}
 
 #page {
   position: relative;
@@ -95,14 +98,15 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 100%;
   padding: 5px 0;
   z-index: 1001;
-  background: #fff;
-  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+  background: #000;
+  color: #fff;
+  /* -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15); */
 }
 @media screen and (max-width: 768px) {
   .ubea-nav {
-    padding: 20px 0;
+    padding: 10px 0;
   }
 }
 .ubea-nav #ubea-logo {
@@ -111,13 +115,14 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 0;
   text-transform: uppercase;
   font-weight: bold;
+  white-space: nowrap;
 }
 .ubea-nav #ubea-logo em {
   color: #FF5126;
 }
 .ubea-nav a {
   padding: 0px 10px;
-  color: #000;
+  color: #fff;
 }
 @media screen and (max-width: 768px) {
   .ubea-nav .menu-1, .ubea-nav .menu-2 {
@@ -999,7 +1004,7 @@ form label {
   transform: translateX(0px);
 }
 #ubea-offcanvas a {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 1);
 }
 #ubea-offcanvas a:hover {
   color: rgba(255, 255, 255, 0.8);
@@ -1112,18 +1117,18 @@ form label {
   display: inline-block;
   width: 25px;
   height: 2px;
-  color: #252525;
+  color: #fff;
   font: bold 14px/.4 Helvetica;
   text-transform: uppercase;
   text-indent: -55px;
-  background: #252525;
+  background: #fff;
   transition: all .2s ease-out;
 }
 .ubea-nav-toggle i::before, .ubea-nav-toggle i::after {
   content: '';
   width: 25px;
   height: 2px;
-  background: #252525;
+  background: #fff;
   position: absolute;
   left: 0;
   transition: all .2s ease-out;
@@ -1177,7 +1182,7 @@ form label {
 .ubea-nav-toggle {
   position: fixed;
   right: 0px;
-  top: 10px;
+  top: 0px;
   z-index: 21;
   padding: 6px 0 0 0;
   display: block;
@@ -1192,6 +1197,9 @@ form label {
   .ubea-nav-toggle {
     display: block;
   }
+  .main-nav{margin-right: 10px;}
+  .ubea-nav ul{margin-right: 40px;}
+  .ubea-nav ul li .memberUl li{display: block;}
 }
 
 .btn {
@@ -1386,7 +1394,7 @@ form label {
 .form-control:active, .form-control:focus {
   outline: none;
   box-shadow: none;
-  border-color: #FF5126;
+  border-color: rgb(105, 212, 255);
 }
 
 .row-pb-md {
@@ -1435,6 +1443,7 @@ form label {
 .ubea-nav .ubea-contact ul li a:hover i {
   color: #fff;
 }
+.footer-nav ul li:hover{color: #FF5126;}
 
 #ubea-features-3 {
   position: relative;
@@ -1444,6 +1453,7 @@ form label {
   #ubea-features-3 {
     top: -2em;
   }
+  #ubea-offcanvas ul li a{display: block;}
 }
 #ubea-features-3 .feature {
   width: 33.33%;

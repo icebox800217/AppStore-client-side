@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0"> 
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>www-vue</title>
+    <title>APP STORE</title>
     <!-- Animate.css -->
     <link rel="stylesheet" href="<%= BASE_URL %>css/animate.css">
     <!-- Icomoon Icon Fonts-->
@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="<%= BASE_URL %>css/style.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Modernizr JS -->
     <!-- <script src="js/modernizr-2.6.2.min.js"></script> -->
     <!-- FOR IE9 below -->
@@ -58,24 +60,38 @@
 	<!-- Main -->
   <script src="<%= BASE_URL %>js/main.js"></script>
   <script src="<%= BASE_URL %>js/common.js"></script>
-  
-<script>
-  // new Vue({
-  //     el:'app',
-  //     data(){
-  //         return{
-  //             info:null
-  //         }
-  //     }
-  //     ,
-  //     mounted(){
-  //         axios
-  //             .get('http://127.0.0.1:8000/member/show/data')
-  //             .then(response => (this.info = response))
-  //             .catch(error => console.log(error))
-  //     }
-  // })
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+  google.charts.load('current', {packages: ['corechart', 'bar']});
+  google.charts.setOnLoadCallback(drawMultSeries);
+
+  function drawMultSeries() {
+      var data = google.visualization.arrayToDataTable([
+        ['star', '', { role: 'style' }],
+        ['5', 8175000,'rgb(0, 207, 235)'],
+        ['4', 3792000,'rgb(0, 225, 255)'],
+        ['3', 2695000,'rgb(53, 231, 255)'],
+        ['2', 2099000,'rgb(94, 236, 255)'],
+        ['1', 1526000,'rgb(131, 241, 255)']
+      ]);
+
+      var options = {
+        title: '評論數',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Total star',
+          minValue: 0
+        },
+        vAxis: {
+          title: '*'
+        }
+      };
+
+      if(document.getElementById('chart_div') !== null){
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));        
+        chart.draw(data, options);
+      }
+    }
   </script>
-  
-  </body>  
+</body>  
 </html>

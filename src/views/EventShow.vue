@@ -1,53 +1,60 @@
 <template>
   <div>
     <!-- <div class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
-      <h1 class="title">{{ event.title }}</h1>
-      <h5>Organized by {{ event.organizer }}</h5>
-      <h5>Category: {{ event.category }}</h5>
+      <span class="eyebrow">@{{ app.time }} on {{ app.date }}</span>
+      <h1 class="title">{{ app.title }}</h1>
+      <h5>Organized by {{ app.organizer }}</h5>
+      <h5>Category: {{ app.category }}</h5>
     </div>
     <BaseIcon name="map">
       <h2>Location</h2>
     </BaseIcon>
-    <address>{{ event.location }}</address>
+    <address>{{ app.location }}</address>
     <h2>Event details</h2>
-    <p>{{ event.description }}</p>
+    <p>{{ app.description }}</p>
     <h2>
       Attendees
-      <span class="badge -fill-gradient">{{ event.attendees ? event.attendees.length : 0 }}</span>
+      <span class="badge -fill-gradient">{{ app.attendees ? app.attendees.length : 0 }}</span>
     </h2>
     <ul class="list-group">
-      <li v-for="(attendee, index) in event.attendees" :key="index" class="list-item">
+      <li v-for="(attendee, index) in app.attendees" :key="index" class="list-item">
         <b>{{ attendee.name }}</b>
       </li>
     </ul>-->
-    <div class="containt">
+    <div class="containt proShow">
       <h3 class="pageTit">商品明細</h3>
       <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12 appGrp">
+        <div class="col-md-4 col-sm-12 col-xs-12 appGrp">
           <div class="appGrpBox">
-            <img :src="`${publicPath}${event.icon}`" />
-            <!-- {{event.icon}}
+            <img :src="imgPath + `${app.appIcon}`" /><!--${publicPath}-->
+            <!-- {{app.icon}}
             {{ publicPath }} -->
           </div>
         </div>
-        <div class="col-md-9 col-sm-6 col-xs-12 appDetail">
-          <h3>{{ event.appName }}</h3>
-          <label>{{ event.company }}</label>
+        <div class="col-md-8 col-sm-12 col-xs-12 appDetail">
+          <h3>{{ app.appName }}</h3>
+          <!-- <label>{{ app.company }}</label> -->
           <div class="tag">
-            <label v-for="(tag,index) in event.tags" :key="index">{{tag}}</label>
-            <!-- <EventCard v-for="event in events" :key="event.id" :event="event" /> -->
+            <label v-for="(tag,index) in app.tagsArr" :key="index">{{tag}}</label>
           </div>
           <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <i class="fa fa-star" style="font-size:12px"></i>
-              <i class="fa fa-star" style="font-size:12px"></i>
-              <i class="fa fa-star" style="font-size:12px"></i>
-              <i class="fa fa-star" style="font-size:12px"></i>
-              <i class="fa fa-star" style="font-size:12px"></i>
+            <div class="col-md-12 col-sm-12 col-xs-12 starGrp">
+              <i class='fas fa-star'></i>
+              <i class='fas fa-star'></i>
+              <i class='fas fa-star'></i>
+              <i class='far fa-star'></i>
+              <i class='far fa-star'></i>
             </div>
           </div>
-          <button class="btn btn-default">下載</button>
+          <!-- <a href="itms-services://?action=download-manifest&url=https://dl.dropbox.com/s/y9xde17wpntkqg7/MyPlist.plist">下載</a> -->
+          <!-- <button class="btn btn-default" v-on:click="downloadApp">下載</button> -->
+          <!--${publicPath}-->
+          <a v-if="app.device == 'android'" :href="`${app.fileURL}`" class="btnDownload">android 下載</a>
+          <a v-if="app.device == 'ios'" :href="`itms-services://?action=download-manifest&url=https://dl.dropbox.com/s/y9xde17wpntkqg7/${app.file}`" class="btnDownload">ios 下載</a>
+
+          <!-- <button @click="downloadWithVueResource">Download file with Vue Resource</button>
+          <button @click="downloadWithAxios">Download file with Axios</button>
+           -->
         </div>
       </div>
       <div class="row">
@@ -55,18 +62,19 @@
           <div id="ubea-hero" data-section="home">
             <div class="flexslider">
               <ul class="slides">
-                <!-- <li v-for="(slideIme,index) in event.slideImgs" :key="index">
+                <!-- <li v-for="(slideIme,index) in app.slideImgs" :key="index">
                   {{slideIme}}
                   <img :src="`${publicPath}${slideIme}`" />
                 </li> -->
+                <!-- <li v-for="(appImg,index) in AppImgs" :key="index">
+                  {{appImg.screenShot}}
+                  <img :src="`http://localhost:8080`+`${appImg.screenShot}`" />                  
+                </li> -->
                 <li>
-                  <img :src="`${publicPath}${event.slideImg1}`" />
+                  <img :src="imgPath +`${slideImg1}`" />
                 </li>
                 <li>
-                  <img :src="`${publicPath}${event.slideImg2}`" />
-                </li>
-                <li>
-                  <img :src="`${publicPath}${event.slideImg3}`" />
+                  <img :src="imgPath+`${slideImg2}`" />
                 </li>
               </ul>
             </div>
@@ -75,10 +83,50 @@
       </div>
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-          {{ event.Introduction }}
+          <p v-html="app.Introduction" class="proShowDesc"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 chartGrp">
+          <h3>評論</h3>
+          <div class="col-md-4 col-sm-4 col-xs-4">
+            <span class="chartTit">4.8</span>
+            <span class="star">
+              <i class='fas fa-star'></i>
+              <i class='fas fa-star'></i>
+              <i class='fas fa-star'></i>
+              <i class='far fa-star'></i>
+              <i class='far fa-star'></i>
+            </span>
+            <span>共 {{comment.length}} 則評分</span>            
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-8">
+            <div id="chart_div"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row QAGrp" v-for="(commData,index) in comment" :key="index">
+        <!-- <CommentCard v-for="(index,commData) in comment" :key="index" :event="commData" /> -->
+        <div class="col-md-2 col-sm-2 col-xs-4 icon">
+          <img :src="`${publicPath}images/icon${commData.imgId}.jpg`"/>
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-8 QAData">
+            <h5>
+              <!-- 藍菇菇 -->
+              {{commData.name}}
+            </h5>          
+            <i class='fas fa-star' v-for="(commData,index) in commData.star" :key="index"></i>
+            <!-- <i class='fas fa-star'></i>
+            <i class='fas fa-star'></i>
+            <i class='far fa-star'></i>
+            <i class='far fa-star'></i> -->
+            <p>
+                {{ commData.comment }}
+            </p>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -91,14 +139,118 @@ export default {
   data() {
     return {
       event: {},
-      publicPath: process.env.BASE_URL
+      app:{},
+      comment:{},
+      AppImgs:{},
+      slideImg1:'',
+      slideImg2:'',
+      publicPath: process.env.BASE_URL,
+      imgPath: window.sessionStorage.imgPath,
+      url:'https://78.media.tumblr.com/tumblr_m39nv7PcCU1r326q7o1_500.png'
     };
   },
-  created() {
-    EventService.getEvent(this.id)
+  mounted(){
+    let appurl = '';
+    appurl = this.app.file;
+    console.log("appurl--",appurl);
+  },
+  methods:{
+    forceFileDownload(response){
+      // const url = window.URL.createObjectURL(new Blob([response.data]))
+      // const link = document.createElement('a')
+      // //link.href = url
+      // link.href = this.publicPath + "appfiles/android/" + this.app.file
+      // console.log("linkHref--",link.href);
+      // link.setAttribute('download', 'file.png') //or any other extension
+      // document.body.appendChild(link)
+      // link.click()
+
+      const url = this.app.file.createObjectURL(new Blob([response.data]))
+      const link = document.createElement('a')
+      //link.href = url
+      link.href = this.publicPath + "appfiles/android/" + this.event.file
+      console.log("linkHref--",link.href);
+      link.setAttribute('download', 'file.png') //or any other extension
+      document.body.appendChild(link)
+      link.click()
+    },
+    downloadApp:function(){
+      // navigator.userAgent.match("Firefox")　//判斷是否為 FireFox
+      // navigator.userAgent.match("MSIE")　//判斷是否為 IE
+      // navigator.userAgent.match("Opera")　//判斷是否為 Opera
+      // navigator.userAgent.match("Safari")　//判斷是否為 Safari 或 Google Chrome
+      console.log("appUrl---",this.app.file);
+      console.log("userAgent",window.navigator.userAgent);      
+      console.log("event---",this.event);
+    },
+    
+    downloadWithVueResource() {
+      
+      this.$http({
+        method: 'get',
+        url: this.url,
+        responseType: 'arraybuffer'
+      })
       .then(response => {
-        this.event = response.data;
-        console.log("detailData--", response.data);
+        this.forceFileDownload(response)  
+      })
+      .catch(() => console.log('error occured'))
+      
+    },
+    
+    downloadWithAxios(){
+      axios({
+        method: 'get',
+        url: this.url,
+        responseType: 'arraybuffer'
+      })
+      .then(response => {
+        
+        this.forceFileDownload(response)
+        
+      })
+      .catch(() => console.log('error occured'))
+    }
+  },
+  created() {
+    // EventService.getEvent(this.id)
+    //   .then(response => {
+    //     this.event = response.data;
+    //     console.log("detailData--", response.data);
+    //   })
+    //   .catch(error => {
+    //     console.log("There was an error:", error.response);
+    //   });
+    EventService.getApp(this.id)
+      .then(response => {
+        this.app = response.data;
+
+        let tags = [];
+        // var splits1 = str.split(" ");
+        tags = this.app.tags.split(",");
+        this.app.tagsArr = tags;
+        //tags = JSON.parse(tags);
+        console.log("detailData--", this.app);
+        console.log("detailDataTags--", tags);
+      })
+      .catch(error => {
+        console.log("There was an error:", error.response);
+      });
+    EventService.getComment(this.id)
+      .then(response => {
+        this.comment = response.data;
+        console.log("comment--", this.comment);
+      })
+      .catch(error => {
+        console.log("There was an error:", error.response);
+      });
+    EventService.getAppImg(this.id)
+      .then(response => {
+        this.AppImgs = response.data;
+        this.slideImg1 = this.AppImgs[0].screenShot;
+        this.slideImg2 = this.AppImgs[1].screenShot;
+        console.log("slideImg1--", this.slideImg1);
+        console.log("slideImg2--", this.slideImg2);
       })
       .catch(error => {
         console.log("There was an error:", error.response);

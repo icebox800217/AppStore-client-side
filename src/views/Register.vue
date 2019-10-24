@@ -32,6 +32,7 @@
             <input type="password" class="form-control" v-model="password" minlength="8" maxlength="12"
             id="InputPassword" placeholder="請輸入密碼, 8-12數字、大小寫英文字母">
             <small id="passwordHelp" class="form-text text-muted">{{passwordErrMsg}}</small>
+            
         </div>
         <!-- <div class="form-group">
             <label for="exampleInputPassword1">確認密碼*</label>
@@ -153,7 +154,7 @@ export default {
       var inclde = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$/;
       if (!isText.test(this.password)) {
           this.passwordError = true;
-          this.passwordErrMsg = '請輸入密碼, 8-12數字、大小寫英文字母';
+          this.passwordErrMsg = '密碼需包含, 大小寫英文字母、數字，共8-12位字元';
       }
       else {
           this.passwordError = false;

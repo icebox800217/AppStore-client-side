@@ -6,3 +6,4 @@ function devRegOpen(){
 function devRegClose(){
     $(".devRegGrp").hide();
 }
+
