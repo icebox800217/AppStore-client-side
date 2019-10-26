@@ -16,7 +16,8 @@
     margin: auto;
     padding: 10px;
 }
-.appGrp img{text-align: center;width: 100%;}
+.appGrp img{text-align: center;height: 170px;}
+.proShowIcon img{width: 100%;}
 .appGrp ul{
     /* background: #fff;
     webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.15);
@@ -118,6 +119,10 @@ em{font-size: 14px;}
 .search button{flex:0.2;}
 .tag,.starGrp{margin: 10px 0;}
 
+.slideImgGrp{display: inline-block;overflow-x: scroll;width: 100%;}
+.slideImg{min-width:2000px;}
+.slideImg img{height: 400px;padding: 10px 10px 10px 0;}
+
 @media screen and (max-width: 768px) {
     .containt{width: 90%;}
     .footer-nav ul{width: 100%;}
@@ -125,11 +130,14 @@ em{font-size: 14px;}
     .footer-nav ul li i{display: block;}
     .search input{flex: 1;border: 1px solid #eee;}
 }
-@media screen and (max-width:500px){
+@media screen and (max-width:600px){
+    .appGrp img{height:auto;width: 100%;}
+    .appGrpBox{height: 180px;}
 }
 @media screen and (max-width:414px){
     .type-nav{overflow:auto;text-align: left;}
     .type-nav .type-nav-data{width: 500px;white-space: nowrap;}
+    .appGrpBox{height: 150px;}
 }
 
 

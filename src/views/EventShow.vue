@@ -24,12 +24,10 @@
     <div class="containt proShow">
       <h3 class="pageTit">商品明細</h3>
       <div class="row">
-        <div class="col-md-4 col-sm-12 col-xs-12 appGrp">
-          <div class="appGrpBox">
-            <img :src="imgPath + `${app.appIcon}`" /><!--${publicPath}-->
+        <div class="col-md-4 col-sm-12 col-xs-12 proShowIcon">
+          <img :src="imgPath + `${app.appIcon}`" /><!--${publicPath}-->
             <!-- {{app.icon}}
             {{ publicPath }} -->
-          </div>
         </div>
         <div class="col-md-8 col-sm-12 col-xs-12 appDetail">
           <h3>{{ app.appName }}</h3>
@@ -39,11 +37,11 @@
           </div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 starGrp">
-              <i class='fas fa-star'></i>
-              <i class='fas fa-star'></i>
+              <i class='fas fa-star' v-for="(star,index) in starAve" :key="index"></i>
+              <!-- <i class='fas fa-star'></i>
               <i class='fas fa-star'></i>
               <i class='far fa-star'></i>
-              <i class='far fa-star'></i>
+              <i class='far fa-star'></i> -->
             </div>
           </div>
           <!-- <a href="itms-services://?action=download-manifest&url=https://dl.dropbox.com/s/y9xde17wpntkqg7/MyPlist.plist">下載</a> -->
@@ -58,26 +56,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div id="ubea-hero" data-section="home">
-            <div class="flexslider">
-              <ul class="slides">
-                <!-- <li v-for="(slideIme,index) in app.slideImgs" :key="index">
-                  {{slideIme}}
-                  <img :src="`${publicPath}${slideIme}`" />
-                </li> -->
-                <!-- <li v-for="(appImg,index) in AppImgs" :key="index">
-                  {{appImg.screenShot}}
-                  <img :src="`http://localhost:8080`+`${appImg.screenShot}`" />                  
-                </li> -->
-                <li>
-                  <img :src="imgPath +`${slideImg1}`" />
-                </li>
-                <li>
-                  <img :src="imgPath+`${slideImg2}`" />
-                </li>
-              </ul>
-            </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 slideImgGrp">
+          <div class="slideImg">
+            <img :src="imgPath +`${slideImg1}`" /><img :src="imgPath+`${slideImg2}`" />
           </div>
         </div>
       </div>
@@ -89,7 +70,7 @@
       <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 chartGrp">
           <h3>評論</h3>
-          <div class="col-md-4 col-sm-4 col-xs-4">
+          <!-- <div class="col-md-4 col-sm-4 col-xs-4">
             <span class="chartTit">4.8</span>
             <span class="star">
               <i class='fas fa-star'></i>
@@ -102,11 +83,10 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-8">
             <div id="chart_div"></div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="row QAGrp" v-for="(commData,index) in comment" :key="index">
-        <!-- <CommentCard v-for="(index,commData) in comment" :key="index" :event="commData" /> -->
         <div class="col-md-2 col-sm-2 col-xs-4 icon">
           <img :src="`${publicPath}images/icon${commData.imgId}.jpg`"/>
         </div>
@@ -144,6 +124,7 @@ export default {
       AppImgs:{},
       slideImg1:'',
       slideImg2:'',
+      starAve:0,
       publicPath: process.env.BASE_URL,
       imgPath: window.sessionStorage.imgPath,
       url:'https://78.media.tumblr.com/tumblr_m39nv7PcCU1r326q7o1_500.png'
@@ -239,7 +220,15 @@ export default {
     EventService.getComment(this.id)
       .then(response => {
         this.comment = response.data;
-        console.log("comment--", this.comment);
+        let starCnt = 0;
+        console.log("commentCount--", this.comment.length);
+        if(this.comment.length !== 0){
+          for(var i=0;i<this.comment.length;i++){
+            starCnt = starCnt + this.comment[i].star;
+          }
+          this.starAve = Math.ceil(starCnt / parseInt(this.comment.length));          
+        }
+        console.log("this.starAve--", this.starAve);
       })
       .catch(error => {
         console.log("There was an error:", error.response);
@@ -249,8 +238,6 @@ export default {
         this.AppImgs = response.data;
         this.slideImg1 = this.AppImgs[0].screenShot;
         this.slideImg2 = this.AppImgs[1].screenShot;
-        console.log("slideImg1--", this.slideImg1);
-        console.log("slideImg2--", this.slideImg2);
       })
       .catch(error => {
         console.log("There was an error:", error.response);

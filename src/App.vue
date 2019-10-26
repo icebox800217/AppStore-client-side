@@ -109,15 +109,15 @@ export default {
           this.loginUser = JSON.parse(window.sessionStorage.userData);
           console.log("loginUser--",this.loginUser);
         }
-        EventService.getEvents()
-          .then(response => {
-            this.events = response.data;
-            this.eventDatas = response.data;
-            console.log("data---", response.data);
-          })
-          .catch(error => {
-            console.log("There was an error:", error.response);
-          });    
+        // EventService.getEvents()
+        //   .then(response => {
+        //     this.events = response.data;
+        //     this.eventDatas = response.data;
+        //     console.log("data---", response.data);
+        //   })
+        //   .catch(error => {
+        //     console.log("There was an error:", error.response);
+        //   });
     // EventService.loginUser()
     //     .then(response => {
     //     this.loginUser = response.data

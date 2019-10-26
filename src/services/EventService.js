@@ -10,25 +10,25 @@ const apiClient = axios.create({
     }
 });
    
-const apiClientDb = axios.create({
-    baseURL: `http://localhost:3000`,
-    withCredentials: false, // This is the default http://localhost:3000
-    headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-    }
-});
+// const apiClientDb = axios.create({
+//     baseURL: `http://localhost:3000`,
+//     withCredentials: false, // This is the default http://localhost:3000
+//     headers: {
+//     Accept: 'application/json',
+//     'Content-Type': 'application/json'
+//     }
+// });
 
 export  default {
-    getLoginUser() {
-    return apiClientDb.get('/loginUser')
-    },    
-    getEvents() {
-    return apiClientDb.get('/apps');
-    },
-    getEvent(id) {
-    return apiClientDb.get('/apps/' + id);
-    },    
+    // getLoginUser() {
+    // return apiClientDb.get('/loginUser')
+    // },    
+    // getEvents() {
+    // return apiClientDb.get('/apps');
+    // },
+    // getEvent(id) {
+    // return apiClientDb.get('/apps/' + id);
+    // },    
     getApps() {
     return apiClient.get('/appLast');
     },    

@@ -2,7 +2,7 @@
   <div>
   <a :href="$router.resolve({ name: 'event-show', params: { id: event.id } }).href">
   <!-- <router-link class="event-link" :to="{ name: 'event-show', params: { id: event.id } }"> -->
-    <div class="event-card -shadow col-md-2 col-sm-3 col-xs-4 appGrp">
+    <div class="event-card -shadow col-lg-2 col-md-3 col-sm-4 col-xs-4 appGrp">
       <!-- <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
       <h4 class="title">{{ event.title }}</h4>-->
       <!-- <BaseIcon name="users">{{ event.attendees }} attending</BaseIcon> -->
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import EventService from "@/services/EventService.js";
+
 export default {
   data() {
     return {
@@ -46,6 +48,10 @@ export default {
   props: {
     event: Object
   }
+  // created() {
+  //   //this.eventObj = JSON.parse(this.eventdata);
+  //   //console.log("eventObj-",event.target);
+  // }
 }
 </script>
 

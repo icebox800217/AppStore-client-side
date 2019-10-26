@@ -67,19 +67,21 @@ export default {
       search:'',
       eventDatas:[],
       categorys:[],
-      apps: []
+      apps: [],
+      comment:{},
+      starAve:0
       // term: ''
     };
   },
   created() {
-    EventService.getEvents()
-      .then(response => {
-        this.events = response.data;
-        this.eventDatas = response.data;
-      })
-      .catch(error => {
-        console.log("There was an error:", error.response);
-      });
+    // EventService.getEvents()
+    //   .then(response => {
+    //     this.events = response.data;
+    //     this.eventDatas = response.data;
+    //   })
+    //   .catch(error => {
+    //     console.log("There was an error:", error.response);
+    //   });
     EventService.getAllCategory()
       .then(response => {
         this.categorys = response.data;
@@ -91,7 +93,13 @@ export default {
       .then(response => {
         this.apps = response.data;
         this.eventDatas = response.data;
-        console.log("thisApps",this.apps);
+        
+        // this.apps = this.eventDatas.filter((searchData) =>{
+        //   if(searchData.device.match('android')){
+        //     this.eventDatas = searchData.device.match('android')
+        //     return this.eventDatas;
+        //   }
+        // });
       })
       .catch(error => {
         console.log("There was an error:", error.response);
